@@ -4,13 +4,13 @@ package com.example.billy.letstalk;
  * Created by billy on 2017-08-04.
  */
 
-public class Friend {
+public class Users {
     private String email;
 
-    public Friend() {
+    public Users() {
     }
 
-    public Friend(String email) {
+    public Users(String email) {
         this.email = email;
     }
 

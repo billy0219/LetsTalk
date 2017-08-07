@@ -17,8 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-import static android.R.id.message;
-
 public class MainActivity extends AppCompatActivity {
 
     private final String CHILD_MESSAGES = "messages";
@@ -92,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 Message message = dataSnapshot.getValue(Message.class);
                 boolean isSent = message.getSender().equals(mMyKey) && message.getReceiver().equals(mKey);
                 boolean isReceived = message.getSender().equals(mKey) && message.getReceiver().equals(mMyKey);
-                if (isSent || isReceived) {
+                if (isSent || isReceived ) {
                     if (isSent) {
                         mAdapter.add(message.getText());
                     } else {

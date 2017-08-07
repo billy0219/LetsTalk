@@ -25,7 +25,7 @@ import static android.R.id.message;
 
 public class FriendsActivity extends AppCompatActivity {
 
-    private final String CHILD_FRIENDS = "friends";
+    private final String CHILD_USERS = "users";
 
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseAuth mAuth;
@@ -34,6 +34,7 @@ public class FriendsActivity extends AppCompatActivity {
     private ArrayList<String> mFriendKeyList;
 
     private Button mLogoutButton;
+    private Button mAddButton;
     private ListView mFriendListView;
     private ArrayAdapter<String> mAdapter;
 
@@ -45,6 +46,7 @@ public class FriendsActivity extends AppCompatActivity {
         setFirebase();
         setFriendListView();
         setLogoutButton();
+        setAddButton();
         setChildEvent();
     }
 
@@ -65,7 +67,7 @@ public class FriendsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(FriendsActivity.this, MainActivity.class);
-                intent.putExtra("email", mFriendList.get(position));
+                intent.putExtra("users", mFriendList.get(position));
                 intent.putExtra("key", mFriendKeyList.get(position));
                 intent.putExtra("my_key", mAuth.getCurrentUser().getUid());
                 startActivity(intent);
@@ -86,12 +88,23 @@ public class FriendsActivity extends AppCompatActivity {
         });
     }
 
+    private void setAddButton() {
+        mAddButton = (Button) findViewById(R.id.addButton);
+        mAddButton.setOnClickListener( new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FriendsActivity.this, AddActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
     private void setChildEvent() {
         ChildEventListener childEventListener= new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Friend friend  = dataSnapshot.getValue(Friend.class);
-                mFriendList.add(friend.getEmail());
+                Users users  = dataSnapshot.getValue(Users.class);
+                mFriendList.add(users.getEmail());
                 mFriendKeyList.add(dataSnapshot.getKey());
 //                mAdapter.add(friend.getEmail());
                 mAdapter.notifyDataSetChanged();
@@ -117,6 +130,6 @@ public class FriendsActivity extends AppCompatActivity {
 
             }
         };
-        mFirebaseDatabaseReference.child(CHILD_FRIENDS).addChildEventListener(childEventListener);
+        mFirebaseDatabaseReference.child(CHILD_USERS).addChildEventListener(childEventListener);
     }
 }

@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AuthActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private final String CHILD_FRIENDS = "friends";
+    private final String CHILD_USERS = "users";
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseAuth mAuth;
 
@@ -60,7 +60,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if (mEmailEditText.getText().toString() != ""
                 && mPasswordEditText.getText().toString() != "") {
-            if (mIsSignUp) {
+            if ( mIsSignUp ) {
 
                 mAuth.createUserWithEmailAndPassword(
                         mEmailEditText.getText().toString(),
@@ -69,8 +69,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                                    Friend friend = new Friend(mEmailEditText.getText().toString());
-                                    mFirebaseDatabaseReference.child(CHILD_FRIENDS).push().setValue(friend);
+                                    Users users = new Users(mEmailEditText.getText().toString());
+                                    mFirebaseDatabaseReference.child(CHILD_USERS).push().setValue(users);
 
                             startActivity(new Intent(AuthActivity.this, FriendsActivity.class));
                         }

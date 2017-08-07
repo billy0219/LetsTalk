@@ -30,7 +30,7 @@ public class LaunchActivity extends AppCompatActivity implements View.OnClickLis
         // if (v.getId() == R.id.signUpButton) {}
         switch (v.getId()) {
             case (R.id.signUpButton):
-                intent.putExtra("isSignUp", true);
+                intent.putExtra("isSignUp", true );
                 break;
             case(R.id.loginButton):
                 default:
