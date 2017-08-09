@@ -37,6 +37,8 @@ public class AddActivity extends AppCompatActivity {
                 mFirebaseDatabaseReference.orderByChild("users")
                         .equalTo(mEmailSearchEditText.getText().toString())
                         .addValueEventListener(new ValueEventListener() {
+
+                            // 하단 코드 리뷰 부탁드립니다.
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.exists()) {
@@ -60,3 +62,4 @@ public class AddActivity extends AppCompatActivity {
         });
     }
 }
+

@@ -60,6 +60,8 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if (mEmailEditText.getText().toString() != ""
                 && mPasswordEditText.getText().toString() != "") {
+
+            //하단 코드는 따로 수정하지 않았는데, 데이터베이스에 입력이 안됩니다.
             if ( mIsSignUp ) {
 
                 mAuth.createUserWithEmailAndPassword(
