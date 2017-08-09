@@ -106,7 +106,7 @@ public class FriendsActivity extends AppCompatActivity {
                 Users users  = dataSnapshot.getValue(Users.class);
                 mFriendList.add(users.getEmail());
                 mFriendKeyList.add(dataSnapshot.getKey());
-//                mAdapter.add(friend.getEmail());
+//                mAdapter.add(users.getEmail());
                 mAdapter.notifyDataSetChanged();
             }
 
